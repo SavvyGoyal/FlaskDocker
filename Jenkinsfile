@@ -16,10 +16,14 @@ pipeline {  environment {
         }
       }
     }
-    stage("Run image"){
-      steps{
-        sh "docker run -p 5000:5000 -d savvygoyal/docker_demo1:4"
-      }
+    stage("DeployImage"){
+        steps{
+            script{
+                docker.withRegistry('',registryCredential){
+                dockerImage.push()
+                }
+            }
+        }
     }
   }
 }
