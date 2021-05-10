@@ -25,6 +25,12 @@ pipeline {  environment {
         }
       }
     }
-
+    stage("Run image"){
+      steps{
+        sh """
+          docker run --rm dockerImage
+          """
+      }
+    }
   }
 }
