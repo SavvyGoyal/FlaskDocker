@@ -16,14 +16,6 @@ pipeline {  environment {
         }
       }
     }
-    stage("DeployImage"){
-        steps{
-            script{
-                docker.withRegistry('',registryCredential){
-                dockerImage.push()
-                }
-            }
-        }
-    }
+    
   }
 }
