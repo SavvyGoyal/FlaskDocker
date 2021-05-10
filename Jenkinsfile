@@ -16,20 +16,9 @@ pipeline {  environment {
         }
       }
     }
-    stage("Deploy Image"){
-      steps{
-        script {
-          docker.withRegistry('', registryCredential){
-            dockerImage.push()
-          }
-        }
-      }
-    }
     stage("Run image"){
       steps{
-        sh """
-          docker run --rm dockerImage
-          """
+        sh "docker run --rm $dockerImage"
       }
     }
   }
